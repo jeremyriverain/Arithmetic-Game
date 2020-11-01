@@ -4,6 +4,7 @@
     <div>min value operand: {{minMaxNumbers[0]}}</div>
     <div>max value operand: {{minMaxNumbers[1]}}</div>
     <div>type operators: {{operators.join(' ')}}</div>
+    <div>winning score: {{winningScore}}</div>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ export default defineComponent({
       maxResolutionTime,
       operators,
       numberOfOperands,
+      winningScore,
     } = useGameSettings();
 
     return {
@@ -26,6 +28,7 @@ export default defineComponent({
       maxResolutionTime,
       operators,
       numberOfOperands,
+      winningScore,
     };
   },
 });

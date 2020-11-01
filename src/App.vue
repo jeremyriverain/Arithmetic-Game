@@ -1,11 +1,16 @@
 <template>
-  <section class="hero is-fullheight">
+  <section
+    class="hero is-fullheight pb-3"
+    id="app-container"
+  >
+    <div id="nav">
+      <router-link to="/">Game</router-link> |
+      <router-link to="/settings">Settings</router-link>
+    </div>
     <div class="hero-body">
+
       <div class="container">
-        <div id="nav">
-          <router-link to="/">Game</router-link> |
-          <router-link to="/settings">Settings</router-link>
-        </div>
+
         <router-view />
       </div>
     </div>

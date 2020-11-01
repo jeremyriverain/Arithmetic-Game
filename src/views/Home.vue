@@ -3,7 +3,10 @@
     <count-down />
     <arithmetic-operation class="mt-3" />
     <score-tracking class="mt-3" />
-    <state-game-buttons class="mt-3" />
+
+    <teleport to="#app-container">
+      <state-game-buttons class="mt-3" />
+    </teleport>
   </div>
 </template>
 

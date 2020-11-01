@@ -4,8 +4,11 @@
     <div class="control">
       <div class="tags has-addons are-medium">
         <span class="tag">score</span>
-        <span class="tag is-warning">{{score}}</span>
-        <span class="tag is-dark">{{winningScore}}</span>
+        <span
+          class="tag"
+          :class="[hasWon ? 'is-success' : 'is-danger']"
+        >{{score}}</span>
+        <!-- <span class="tag is-dark">{{winningScore}}</span> -->
       </div>
     </div>
   </div>
@@ -14,17 +17,17 @@
 
 <script>
 import useScoreTracking from "@/use/useScoreTracking";
-import useGameSettings from "@/use/useGameSettings";
+import useGameState from "@/use/useGameState";
 export default {
   name: "ScoreTracking",
   setup() {
     const { score } = useScoreTracking();
 
-    const { winningScore } = useGameSettings();
+    const { hasWon } = useGameState();
 
     console.log("score", score);
 
-    return { score, winningScore };
+    return { score, hasWon };
   },
 };
 </script>
