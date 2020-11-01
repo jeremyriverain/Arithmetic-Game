@@ -1,6 +1,6 @@
 <template>
   <section
-    class="hero is-fullheight"
+    class="hero"
     id="app-container"
     ref="appWrapper"
   >
@@ -22,21 +22,20 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent } from "vue";
+// import { defineComponent, ref, onMounted } from "vue";
 export default defineComponent({
   setup() {
-    const appWrapper = ref(null); // template refs
-
-    onMounted(() => {
-      console.log("el", appWrapper);
-      if (appWrapper.value.requestFullScreen) {
-        appWrapper.value.requestFullScreen();
-      }
-    });
-
-    return {
-      appWrapper,
-    };
+    // const appWrapper = ref(null); // template refs
+    // onMounted(() => {
+    //   console.log("el", appWrapper);
+    //   if (appWrapper.value.requestFullScreen) {
+    //     appWrapper.value.requestFullScreen();
+    //   }
+    // });
+    // return {
+    //   appWrapper,
+    // };
   },
 });
 </script>

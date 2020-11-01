@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <button
-      class="button"
+      class="button is-small"
       @click="isPlaying = true"
       :disabled="isPlaying"
     >
@@ -12,7 +12,7 @@
       <span>Jouer</span>
     </button>
     <button
-      class="button"
+      class="button is-small"
       @click="isPlaying = false"
       :disabled="!isPlaying"
     >
@@ -20,6 +20,15 @@
         <i class="fas fa-pause-circle"></i>
       </span>
       <span>Pause</span>
+    </button>
+    <button
+      class="button is-small"
+      :disabled="!isPlaying"
+    >
+      <span class="icon is-small">
+        <i class="fas fa-redo"></i>
+      </span>
+      <span>Rejouer</span>
     </button>
   </div>
 </template>
