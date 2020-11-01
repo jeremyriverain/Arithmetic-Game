@@ -1,13 +1,26 @@
 <template>
   <div class="app-container">
     <button
+      class="button"
       @click="isPlaying = true"
       :disabled="isPlaying"
-    >Play</button>
+    >
+
+      <span class="icon is-small">
+        <i class="fas fa-play-circle"></i>
+      </span>
+      <span>Play</span>
+    </button>
     <button
+      class="button"
       @click="isPlaying = false"
       :disabled="!isPlaying"
-    >Pause</button>
+    >
+      <span class="icon is-small">
+        <i class="fas fa-pause-circle"></i>
+      </span>
+      <span>Pause</span>
+    </button>
   </div>
 </template>
 

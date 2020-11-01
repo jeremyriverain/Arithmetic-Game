@@ -1,9 +1,9 @@
 <template>
   <div class="page-home">
-    <count-down style="margin-top: 1rem" />
-    <arithmetic-operation style="margin-top: 1rem" />
-    <state-game-buttons style="margin-top: 1rem" />
-    <score-tracking style="margin-top: 1rem" />
+    <count-down />
+    <arithmetic-operation class="mt-3" />
+    <score-tracking class="mt-3" />
+    <state-game-buttons class="mt-3" />
   </div>
 </template>
 

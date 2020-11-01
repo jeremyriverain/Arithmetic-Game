@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">{{countDown}}</div>
+  <div class="is-size-1 has-text-centered">{{countDown}}</div>
 </template>
 
 <script>
@@ -18,6 +18,4 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-.app-container
-  text-align: center
 </style>

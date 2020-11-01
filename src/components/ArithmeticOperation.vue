@@ -3,25 +3,33 @@
     <div
       v-for="(item, i) in operationNodes"
       :key="i"
-      class="app-node"
+      class="is-size-4"
       :class="i % 2 === 0 ? 'app-number' : 'app-operator'"
     >
       {{item}}
     </div>
     <div>=</div>
-    <div>
-      <input
-        type="number"
-        v-model.number="result"
-        @keyup.enter="onSubmit"
-        :disabled="!isPlaying"
-      />
+    <div class="field mb-0">
+      <div class="control">
+        <input
+          class="input"
+          type="number"
+          v-model.number="result"
+          @keyup.enter="onSubmit"
+          :disabled="!isPlaying"
+        >
+      </div>
     </div>
     <div>
       <button
+        class="button is-success"
         @click="onSubmit"
         :disabled="!isPlaying"
-      >Submit</button>
+      >
+        <span class="icon is-small">
+          <i class="fas fa-check"></i>
+        </span>
+      </button>
     </div>
   </div>
 </template>
@@ -78,5 +86,7 @@ export default defineComponent({
   justify-content: center
   align-items: center
   & * + *
-    margin-left: 0.2rem
+    margin-left: 0.3rem
+  .field
+    max-width: 70px
 </style>
