@@ -1,11 +1,11 @@
 import { random } from '@/lib/lib'
 import useGameSettings from './useGameSettings'
-const { minMaxNumbers, numNumbers, operators, operations } = useGameSettings();
+const { minMaxNumbers, numberOfOperands, operators } = useGameSettings();
 
 export default function useOperation () {
 
     const makeOperation = (): (string | number)[] => {
-        const iterations = numNumbers * 2 - 1;
+        const iterations = numberOfOperands * 2 - 1;
         let res = [];
         for (let i = 0; i < iterations; i++) {
             if (i % 2 === 0) {

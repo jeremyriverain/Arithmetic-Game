@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-home">
     <count-down style="margin-top: 1rem" />
     <arithmetic-operation style="margin-top: 1rem" />
     <state-game-buttons style="margin-top: 1rem" />
@@ -15,7 +15,7 @@ import ScoreTracking from "@/components/ScoreTracking";
 import StateGameButtons from "@/components/StateGameButtons";
 
 export default defineComponent({
-  name: "App",
+  name: "PageHome",
   components: {
     ArithmeticOperation,
     CountDown,
