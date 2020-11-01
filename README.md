@@ -1,8 +1,8 @@
 # Calculation game
 
-Side project, just for testing purposes.
+Side project, just for testing purposes. Playing around Vue 3 and Typescript.
 
-I set myself a constraint: only use the new Composition API of Vue 3. Complex enough to cover and experiment the major parts of this API.
+I set myself a constraint: only use the new Composition API.
 
 ## Project setup
 
