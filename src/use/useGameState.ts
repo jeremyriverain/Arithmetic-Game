@@ -17,7 +17,7 @@ export default function useGameState () {
     }
 
     const { winningScore } = useGameSettings()
-    const { score } = useScoreTracking()
+    const { score, resetScore } = useScoreTracking()
 
     const hasWon = computed(() => {
         console.log('has won', score, winningScore);
@@ -37,6 +37,17 @@ export default function useGameState () {
         isPlaying.value = false
     }
 
+    const restart = () => {
+        isPlaying.value = false
+        currentRound.value = currentRound.value === 1 ? 0 : 1
+        startedAt.value = ''
+        logOperations.value = []
+
+        resetScore()
+
+        play()
+    }
+
     return {
         isPlaying: computed(() => isPlaying.value),
         nextRound,
@@ -44,6 +55,7 @@ export default function useGameState () {
         hasWon,
         play,
         pause,
+        restart,
         logOperations,
         startedAt: computed(() => startedAt.value)
     }

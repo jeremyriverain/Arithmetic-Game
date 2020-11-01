@@ -15,11 +15,11 @@
     <div class="message-body">
 
       <p>
-        Jeu de calcul mental.
+        Jeu autour du calcul mental.
       </p>
 
       <p>
-        Tu débutes la partie avec un score à 0, et {{healthPoints}} points de vie.
+        Vous débutez la partie avec un score à 0, et {{healthPoints}} points de vie.
       </p>
 
       <p>
@@ -31,22 +31,19 @@
       </p>
 
       <p>
-        En cas de bonne réponse, tu gagnes les points équivalents au nombre de secondes ne s'étant pas écoulées. Il faut donc être rapide !
+        En cas de bonne réponse, vous gagnez un nombre de points équivalents au nombre de secondes ne s'étant pas écoulées. Il faut donc être rapide !
       </p>
 
       <p>
-        En cas de mauvaise réponse, tu perds 1 point de vie.
+        En cas de mauvaise réponse, vous perdez 1 point de vie.
       </p>
 
       <p>
-        Si le temps s'est écoulé et que tu n'a pas répondu, on passe au calcul suivant mais tu perds 1 point de vie.
+        Si le temps s'est écoulé et que vous n'avez pas répondu, on passe au calcul suivant mais vous passez 1 point de vie.
       </p>
 
       <p>
-        Si tu perds tous tes points de vie, évidemment c'est game over mais tu pourras retenter ta chance.
-      </p>
-      <p>
-        Amuse toi bien !
+        Si vous perdez tous vos points de vie, évidemment c'est game over mais vous pourrez retenter votre chance.
       </p>
 
     </div>

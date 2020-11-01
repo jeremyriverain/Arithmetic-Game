@@ -6,8 +6,13 @@ export default function useScoreTracking () {
         score.value += points
     }
 
+    const resetScore = () => {
+        score.value = 0
+    }
+
     return {
         addScore,
         score: computed(() => score.value),
+        resetScore
     }
 }

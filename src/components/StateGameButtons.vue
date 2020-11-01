@@ -24,7 +24,8 @@
     </button>
     <button
       class="button is-small"
-      :disabled="!isPlaying"
+      :disabled="startedAt === ''"
+      @click="restart()"
     >
       <span class="icon is-small">
         <i class="fas fa-redo"></i>
@@ -42,12 +43,14 @@ import useGameState from "@/use/useGameState";
 export default defineComponent({
   name: "StateGameButtons",
   setup() {
-    const { isPlaying, play, pause } = useGameState();
+    const { isPlaying, play, pause, startedAt, restart } = useGameState();
 
     return {
       play,
       pause,
       isPlaying,
+      startedAt,
+      restart,
     };
   },
 });
