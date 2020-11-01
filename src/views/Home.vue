@@ -6,9 +6,10 @@
 
     <arithmetic-operation class="my-5" />
 
-    <div class="is-flex is-justify-content-space-around	is-align-items-center mt-5">
+    <div class="is-flex is-justify-content-space-around	is-align-items-center mt-5 is-flex-wrap-wrap">
       <health-point />
       <score-tracking />
+      <chrono-game />
     </div>
 
     <!-- <teleport to="#app-container"> -->
@@ -21,6 +22,7 @@
 <script>
 import { defineComponent } from "vue";
 import ArithmeticOperation from "@/components/ArithmeticOperation";
+import ChronoGame from "@/components/ChronoGame";
 import CountDown from "@/components/CountDown";
 import FeedbackOperation from "@/components/FeedbackOperation";
 import HealthPoint from "@/components/HealthPoint";
@@ -31,6 +33,7 @@ export default defineComponent({
   name: "PageHome",
   components: {
     ArithmeticOperation,
+    ChronoGame,
     CountDown,
     FeedbackOperation,
     HealthPoint,

@@ -5,8 +5,7 @@
       <i class="fas fa-leaf"></i>
     </span>
     <span class="px-2">x</span>
-    <span :class="[hasWon ? 'is-success' : 'is-dark']">
-
+    <span>
       {{score}}
     </span>
   </div>
@@ -16,19 +15,16 @@
 <script>
 import useScoreTracking from "@/use/useScoreTracking";
 import useGameSettings from "@/use/useGameSettings";
-import useGameState from "@/use/useGameState";
 export default {
   name: "ScoreTracking",
   setup() {
     const { score } = useScoreTracking();
 
-    const { hasWon } = useGameState();
-
     const { winningScore } = useGameSettings();
 
     console.log("score", score);
 
-    return { score, hasWon, winningScore };
+    return { score, winningScore };
   },
 };
 </script>

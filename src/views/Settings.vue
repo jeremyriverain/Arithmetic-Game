@@ -1,10 +1,122 @@
 <template>
   <div class="page-settings">
-    <div>Nombre d'opérandes: {{numberOfOperands}}</div>
-    <div>Valeur minimale: {{minMaxNumbers[0]}}</div>
-    <div>Valeur maximale: {{minMaxNumbers[1]}}</div>
-    <div>Type d'opérateurs: {{operators.join(' ')}}</div>
-    <div>Score à atteindre: {{winningScore}}</div>
+    <form @submit.prevent>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Nombre d'opérandes</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+              >
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Minimum</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+              >
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Maximum</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+              >
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Opérations possibles</label>
+        </div>
+        <div class="field-body">
+          <div class="field is-narrow">
+            <div class="control">
+              <label class="mr-3">
+                <input
+                  type="checkbox"
+                  name="member"
+                >
+                Addition
+              </label>
+              <label class="mr-3">
+                <input
+                  type="checkbox"
+                  name="member"
+                >
+                Soustraction
+              </label>
+              <label class="mr-3">
+                <input
+                  type="checkbox"
+                  name="member"
+                >
+                Multiplication
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Score à atteindre</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+              >
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <!-- Left empty for spacing -->
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <button class="button is-success">
+                Enregistrer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
   </div>
 </template>
 
@@ -36,5 +148,5 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .page-settings
-  text-align: center
+  // text-align: center
 </style>
