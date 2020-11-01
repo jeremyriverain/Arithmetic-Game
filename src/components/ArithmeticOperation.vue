@@ -13,6 +13,7 @@
       <input
         type="number"
         v-model.number="result"
+        inputmode="numeric"
         @keyup.enter="onSubmit"
         :disabled="!isPlaying"
       />
@@ -74,9 +75,9 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .app-container
-    display: flex
-    justify-content: center
-    align-items: center
-    & * + *
-        margin-left: 0.2rem
+  display: flex
+  justify-content: center
+  align-items: center
+  & * + *
+    margin-left: 0.2rem
 </style>
