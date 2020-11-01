@@ -1,36 +1,40 @@
 <template>
-  <div class="app-container">
-    <div
-      v-for="(item, i) in operationNodes"
-      :key="i"
-      class="is-size-4"
-    >
-      {{item}}
-    </div>
-    <div>=</div>
-    <div class="field mb-0">
-      <div class="control">
-        <input
-          class="input"
-          type="number"
-          v-model.number="result"
-          @keyup.enter="onSubmit"
-          :disabled="!isPlaying"
+  <div class="card">
+    <div class="card-content">
+      <div class="app-container">
+        <div
+          v-for="(item, i) in operationNodes"
+          :key="i"
+          class="is-size-4"
         >
+          <span v-if="i % 2 === 0 && !isPlaying && startedAt === ''">x</span>
+          <span v-else>
+            {{item}}
+          </span>
+        </div>
+        <div>=</div>
+        <div class="field mb-0">
+          <div class="control">
+            <input
+              class="input"
+              type="number"
+              v-model.number="result"
+              @keyup.enter="onSubmit"
+              :disabled="!isPlaying"
+            >
+          </div>
+        </div>
+        <div>
+
+          <span class="icon is-small">
+            <i class="fas fa-question"></i>
+          </span>
+
+        </div>
       </div>
     </div>
-    <div>
-      <button
-        class="button"
-        @click="onSubmit"
-        :disabled="!isPlaying"
-      >
-        <span class="icon is-small">
-          <i class="fas fa-question"></i>
-        </span>
-      </button>
-    </div>
   </div>
+
 </template>
 
 
@@ -48,7 +52,7 @@ export default defineComponent({
 
     const operationNodes = ref(makeOperation());
 
-    const { currentRound, isPlaying, nextRound } = useGameState();
+    const { currentRound, isPlaying, nextRound, startedAt } = useGameState();
 
     const { countDown } = useCountDown();
     const { addScore } = useScoreTracking();
@@ -74,6 +78,7 @@ export default defineComponent({
       operationNodes,
       result,
       isPlaying,
+      startedAt,
     };
   },
 });

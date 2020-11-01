@@ -1,5 +1,13 @@
 <template>
-  <div class="is-size-1 has-text-centered">{{countDown}}</div>
+  <div class="is-flex is-align-items-center is-justify-content-center">
+    <span class="icon is-size-4">
+      <i class="fas fa-stopwatch"></i>
+    </span>
+
+    <div class="is-size-3 pl-3">
+      {{countDown}}
+    </div>
+  </div>
 </template>
 
 <script>

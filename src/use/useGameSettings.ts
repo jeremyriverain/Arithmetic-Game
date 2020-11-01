@@ -5,7 +5,8 @@ const settings = reactive({
     numberOfOperands: 3,
     operators: ['+', '-'],
     maxResolutionTime: 10,
-    winningScore: 30
+    winningScore: 30,
+    healthPoints: 3
 })
 
 export default function useGameSettings () {

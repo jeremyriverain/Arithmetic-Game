@@ -1,42 +1,25 @@
 <template>
-  <section
-    class="hero"
-    id="app-container"
-    ref="appWrapper"
-  >
-    <div id="app-top">
-      <div id="nav">
-        <router-link to="/">Jeu</router-link> |
-        <router-link to="/settings">Paramètres</router-link>
-      </div>
+  <section id="app-container">
+
+    <div id="nav">
+      <router-link to="/">Jeu</router-link> |
+      <router-link to="/settings">Paramètres</router-link>
     </div>
 
-    <div class="hero-body">
+  </section>
 
-      <div class="container">
-
-        <router-view />
-      </div>
+  <section class="section">
+    <div class="container">
+      <router-view />
     </div>
   </section>
+
 </template>
 
 <script>
 import { defineComponent } from "vue";
-// import { defineComponent, ref, onMounted } from "vue";
 export default defineComponent({
-  setup() {
-    // const appWrapper = ref(null); // template refs
-    // onMounted(() => {
-    //   console.log("el", appWrapper);
-    //   if (appWrapper.value.requestFullScreen) {
-    //     appWrapper.value.requestFullScreen();
-    //   }
-    // });
-    // return {
-    //   appWrapper,
-    // };
-  },
+  setup() {},
 });
 </script>
 
@@ -52,7 +35,7 @@ $green: #42b983
 
 #nav
   text-align: center
-  padding: 30px
+  padding: 30px 30px 0 30px
 
   a
     font-weight: bold

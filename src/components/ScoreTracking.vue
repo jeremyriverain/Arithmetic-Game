@@ -1,8 +1,8 @@
 <template>
 
   <div class="is-flex is-justify-content-center is-align-items-center is-flex-wrap-nowrap is-size-4">
-    <span class="icon has-text-success">
-      <i class="fas fa-leaf"></i>
+    <span class="icon has-text-info">
+      <i class="fas fa-medal"></i>
     </span>
     <span class="px-2">x</span>
     <span>

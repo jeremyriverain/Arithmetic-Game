@@ -2,7 +2,7 @@
   <div class="app-container">
     <button
       class="button is-small"
-      @click="isPlaying = true"
+      @click="play()"
       :disabled="isPlaying"
     >
 
@@ -11,9 +11,10 @@
       </span>
       <span>Jouer</span>
     </button>
+
     <button
       class="button is-small"
-      @click="isPlaying = false"
+      @click="pause()"
       :disabled="!isPlaying"
     >
       <span class="icon is-small">
@@ -41,9 +42,11 @@ import useGameState from "@/use/useGameState";
 export default defineComponent({
   name: "StateGameButtons",
   setup() {
-    const { isPlaying } = useGameState();
+    const { isPlaying, play, pause } = useGameState();
 
     return {
+      play,
+      pause,
       isPlaying,
     };
   },

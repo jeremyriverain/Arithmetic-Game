@@ -20,7 +20,7 @@
 
       <div class="field is-horizontal">
         <div class="field-label is-normal">
-          <label class="label">Minimum</label>
+          <label class="label">Nombre minimum</label>
         </div>
         <div class="field-body">
           <div class="field">
@@ -37,7 +37,7 @@
 
       <div class="field is-horizontal">
         <div class="field-label is-normal">
-          <label class="label">Maximum</label>
+          <label class="label">Nombre maximum</label>
         </div>
         <div class="field-body">
           <div class="field">
@@ -87,6 +87,38 @@
       <div class="field is-horizontal">
         <div class="field-label is-normal">
           <label class="label">Score à atteindre</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+              >
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Délai de résolution (secondes)</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+              >
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Points de vie</label>
         </div>
         <div class="field-body">
           <div class="field">
