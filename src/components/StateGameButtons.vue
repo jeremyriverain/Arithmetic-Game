@@ -9,7 +9,7 @@
       <span class="icon is-small">
         <i class="fas fa-play-circle"></i>
       </span>
-      <span>Play</span>
+      <span>Jouer</span>
     </button>
     <button
       class="button"

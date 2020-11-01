@@ -1,12 +1,16 @@
 <template>
   <section
-    class="hero is-fullheight pb-3"
+    class="hero is-fullheight"
     id="app-container"
+    ref="appWrapper"
   >
-    <div id="nav">
-      <router-link to="/">Game</router-link> |
-      <router-link to="/settings">Settings</router-link>
+    <div id="app-top">
+      <div id="nav">
+        <router-link to="/">Jeu</router-link> |
+        <router-link to="/settings">Paramètres</router-link>
+      </div>
     </div>
+
     <div class="hero-body">
 
       <div class="container">
@@ -16,6 +20,26 @@
     </div>
   </section>
 </template>
+
+<script>
+import { defineComponent, ref, onMounted } from "vue";
+export default defineComponent({
+  setup() {
+    const appWrapper = ref(null); // template refs
+
+    onMounted(() => {
+      console.log("el", appWrapper);
+      if (appWrapper.value.requestFullScreen) {
+        appWrapper.value.requestFullScreen();
+      }
+    });
+
+    return {
+      appWrapper,
+    };
+  },
+});
+</script>
 
 <style lang="sass">
 @charset "utf-8"

@@ -4,7 +4,6 @@
       v-for="(item, i) in operationNodes"
       :key="i"
       class="is-size-4"
-      :class="i % 2 === 0 ? 'app-number' : 'app-operator'"
     >
       {{item}}
     </div>
@@ -22,12 +21,12 @@
     </div>
     <div>
       <button
-        class="button is-success"
+        class="button"
         @click="onSubmit"
         :disabled="!isPlaying"
       >
         <span class="icon is-small">
-          <i class="fas fa-check"></i>
+          <i class="fas fa-question"></i>
         </span>
       </button>
     </div>

@@ -1,10 +1,10 @@
 <template>
   <div class="page-settings">
-    <div>number of operands: {{numberOfOperands}}</div>
-    <div>min value operand: {{minMaxNumbers[0]}}</div>
-    <div>max value operand: {{minMaxNumbers[1]}}</div>
-    <div>type operators: {{operators.join(' ')}}</div>
-    <div>winning score: {{winningScore}}</div>
+    <div>Nombre d'opérandes: {{numberOfOperands}}</div>
+    <div>Valeur minimale: {{minMaxNumbers[0]}}</div>
+    <div>Valeur maximale: {{minMaxNumbers[1]}}</div>
+    <div>Type d'opérateurs: {{operators.join(' ')}}</div>
+    <div>Score à atteindre: {{winningScore}}</div>
   </div>
 </template>
 
