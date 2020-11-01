@@ -4,7 +4,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import useCountDown from "./../use/useCountDown";
+import useCountDown from "@/use/useCountDown";
 
 export default defineComponent({
   name: "CountDown",
@@ -19,5 +19,5 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .app-container
-    text-align: center
+  text-align: center
 </style>

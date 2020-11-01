@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import useScoreTracking from "./../use/useScoreTracking";
+import useScoreTracking from "@/use/useScoreTracking";
 export default {
   name: "ScoreTracking",
   setup() {
@@ -18,5 +18,5 @@ export default {
 
 <style lang="sass" scoped>
 .app-container
-    text-align: center
+  text-align: center
 </style>

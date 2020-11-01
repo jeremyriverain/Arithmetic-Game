@@ -13,7 +13,6 @@
       <input
         type="number"
         v-model.number="result"
-        inputmode="numeric"
         @keyup.enter="onSubmit"
         :disabled="!isPlaying"
       />
@@ -29,10 +28,10 @@
 
 
 <script>
-import useOperation from "./../use/useOperation.ts";
-import useGameState from "./../use/useGameState.ts";
-import useCountDown from "./../use/useCountDown";
-import useScoreTracking from "./../use/useScoreTracking";
+import useOperation from "@/use/useOperation.ts";
+import useGameState from "@/use/useGameState.ts";
+import useCountDown from "@/use/useCountDown";
+import useScoreTracking from "@/use/useScoreTracking";
 import { defineComponent, ref, watch } from "vue";
 export default defineComponent({
   name: "ArithmeticOperation",

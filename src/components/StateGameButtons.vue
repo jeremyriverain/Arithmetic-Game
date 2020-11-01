@@ -14,7 +14,7 @@
 <script>
 import { defineComponent } from "vue";
 
-import useGameState from "./../use/useGameState";
+import useGameState from "@/use/useGameState";
 
 export default defineComponent({
   name: "StateGameButtons",
@@ -30,9 +30,9 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .app-container
-    display: flex
-    justify-content: center
-    align-items: center
-    & * + *
-        margin-left: 0.3rem
+  display: flex
+  justify-content: center
+  align-items: center
+  & * + *
+    margin-left: 0.3rem
 </style>

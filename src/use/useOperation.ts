@@ -1,4 +1,4 @@
-import { random } from './../lib/lib'
+import { random } from '@/lib/lib'
 import useGameSettings from './useGameSettings'
 const { minMaxNumbers, numNumbers, operators, operations } = useGameSettings();
 
