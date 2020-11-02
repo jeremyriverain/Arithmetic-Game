@@ -1,68 +1,64 @@
 <template>
   <div class="page-settings">
-    <form @submit.prevent>
-
+    <form>
       <base-input-number
-        v-model="localSettings.numberOfOperands"
+        v-model="vuelidate.localSettings.numberOfOperands.$model"
         label="Nombre d'opérandes"
-      />
+        :error="vuelidate.localSettings.numberOfOperands.$errors.length > 0"
+      >
+        <template #error>
+          <base-error-input-message :errors="vuelidate.localSettings.numberOfOperands.$errors" />
+        </template>
+      </base-input-number>
 
       <base-input-number
-        v-model="localSettings.minMaxNumbers[0]"
-        label="Nombre minimum"
-      />
+        v-model="vuelidate.min.$model"
+        label="Valeur min."
+        :error="vuelidate.min.$errors.length > 0"
+      >
+        <template #error>
+          <base-error-input-message :errors="vuelidate.min.$errors" />
+        </template>
+      </base-input-number>
 
       <base-input-number
-        v-model="localSettings.minMaxNumbers[1]"
-        label="Nombre maximum"
-      />
-
-      <div class="field is-horizontal">
-        <div class="field-label">
-          <label class="label">Opérations possibles</label>
-        </div>
-        <div class="field-body">
-          <div class="field is-narrow">
-            <div class="control">
-              <label class="mr-3">
-                <input
-                  type="checkbox"
-                  name="member"
-                >
-                Addition
-              </label>
-              <label class="mr-3">
-                <input
-                  type="checkbox"
-                  name="member"
-                >
-                Soustraction
-              </label>
-              <label class="mr-3">
-                <input
-                  type="checkbox"
-                  name="member"
-                >
-                Multiplication
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
+        v-model="vuelidate.max.$model"
+        label="Valeur max."
+        :error="vuelidate.max.$errors.length > 0"
+      >
+        <template #error>
+          <base-error-input-message :errors="vuelidate.max.$errors" />
+        </template>
+      </base-input-number>
 
       <base-input-number
-        v-model="localSettings.winningScore"
+        v-model="vuelidate.localSettings.winningScore.$model"
         label="Score à atteindre"
-      />
+        :error="vuelidate.localSettings.winningScore.$errors.length > 0"
+      >
+        <template #error>
+          <base-error-input-message :errors="vuelidate.localSettings.winningScore.$errors" />
+        </template>
+      </base-input-number>
 
       <base-input-number
-        v-model="localSettings.maxResolutionTime"
+        v-model="vuelidate.localSettings.maxResolutionTime.$model"
         label="Délai de résolution (secondes)"
-      />
+        :error="vuelidate.localSettings.maxResolutionTime.$errors.length > 0"
+      >
+        <template #error>
+          <base-error-input-message :errors="vuelidate.localSettings.maxResolutionTime.$errors" />
+        </template>
+      </base-input-number>
       <base-input-number
-        v-model="localSettings.healthPoints"
+        v-model="vuelidate.localSettings.healthPoints.$model"
+        :error="vuelidate.localSettings.healthPoints.$errors.length > 0"
         label="Points de vie"
-      />
+      >
+        <template #error>
+          <base-error-input-message :errors="vuelidate.localSettings.healthPoints.$errors" />
+        </template>
+      </base-input-number>
 
       <div class="field is-horizontal">
         <div class="field-label">
@@ -73,7 +69,6 @@
             <div class="control">
               <button
                 class="button is-success"
-                type="submit"
                 @click="onSubmit"
               >
                 Enregistrer
@@ -88,18 +83,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, reactive } from "vue";
+import { defineComponent, reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, minValue, maxValue } from "@vuelidate/validators";
+
+import Settings from "@/model/settings";
+
 import { useGameSettings, setSettings } from "@/use/useGameSettings";
 
+import BaseErrorInputMessage from "@/components/BaseErrorInputMessage.vue";
 import BaseInputNumber from "@/components/BaseInputNumber.vue";
-import Settings from "@/model/settings";
 
 export default defineComponent({
   name: "PageSettings",
   components: {
+    BaseErrorInputMessage,
     BaseInputNumber,
   },
   setup() {
+    const router = useRouter();
+
+    // eslint-disable-line no-unused-vars
     const {
       minMaxNumbers,
       maxResolutionTime,
@@ -119,18 +125,74 @@ export default defineComponent({
         healthPoints.value
       )
     );
-    watch(localSettings, (newSettings) => {
-      console.log("local settings", newSettings);
-    });
+
+    const min = ref(minMaxNumbers.value[0]);
+    const max = ref(minMaxNumbers.value[1]);
+
+    const rules = {
+      min: {
+        required,
+        minValue: minValue(0),
+        maxValue: maxValue(99),
+        minLessThanMax() {
+          if (!min.value || !max.value) {
+            return true;
+          }
+          return min.value < max.value;
+        },
+      },
+      max: {
+        required,
+        minValue: minValue(1),
+        minLessThanMax() {
+          if (!min.value || !max.value) {
+            return true;
+          }
+          return min.value < max.value;
+        },
+        maxValue: maxValue(100),
+      },
+      localSettings: {
+        numberOfOperands: {
+          required,
+          minValue: minValue(2),
+          maxValue: maxValue(5),
+        },
+        winningScore: {
+          required,
+          minValue: minValue(10),
+        },
+        maxResolutionTime: {
+          required,
+          minValue: minValue(5),
+        },
+        healthPoints: {
+          required,
+          minValue: minValue(1),
+        },
+      },
+    };
+
+    const $v = useVuelidate(rules, { localSettings, min, max });
 
     const onSubmit = () => {
       console.log("on submit");
-      setSettings(localSettings);
+      $v.value.$touch();
+      if ($v.value.$invalid) {
+        console.log("invalid");
+      } else {
+        localSettings.minMaxNumbers = [min.value, max.value];
+        setSettings(localSettings);
+        router.push({ name: "Home" });
+      }
     };
 
     return {
       onSubmit,
       localSettings,
+      min,
+      max,
+      vuelidate: $v,
     };
   },
 });

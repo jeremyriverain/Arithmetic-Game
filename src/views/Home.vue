@@ -7,7 +7,6 @@
       :finished-at="finishedAt"
       :is-playing="isPlaying"
       @play="play"
-      @pause="pause"
       @stop="stop"
     />
     <timer class="timer" />
@@ -15,6 +14,7 @@
     <arithmetic-operation
       class="my-5"
       :started-at="startedAt"
+      :finished-at="finishedAt"
       :operation-track-index="operationTrackIndex"
       :is-playing="isPlaying"
       @operation-success="onOperationSuccess"
@@ -78,7 +78,7 @@ export default defineComponent({
       operationTrackIndex,
       isPlaying,
       play,
-      pause,
+      // pause,
       stop,
       onOperationError,
       onOperationSuccess,
@@ -93,7 +93,7 @@ export default defineComponent({
       operationTrackIndex,
       isPlaying,
       play,
-      pause,
+      // pause,
       stop,
       onOperationError,
       onOperationSuccess,
@@ -109,6 +109,7 @@ export default defineComponent({
         "Vous avez une partie en cours. Poursuivre la navigation ?"
       );
       if (confirmLeave) {
+        this.stop();
         next();
       }
       return;

@@ -14,16 +14,6 @@
 
     <button
       class="button is-small"
-      @click="$emit('pause')"
-      :disabled="!isPlaying"
-    >
-      <span class="icon is-small">
-        <i class="fas fa-pause-circle"></i>
-      </span>
-      <span>Pause</span>
-    </button>
-    <button
-      class="button is-small"
       :disabled="!startedAt || (startedAt && finishedAt)"
       @click="$emit('stop')"
     >
@@ -55,6 +45,7 @@ export default defineComponent({
     },
   },
   setup() {},
+  emits: ["stop", "play"],
 });
 </script>
 

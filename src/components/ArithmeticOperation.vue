@@ -7,7 +7,7 @@
           :key="i"
           class="is-size-4"
         >
-          <span v-if="i % 2 === 0 && !isPlaying && !startedAt">x</span>
+          <span v-if="i % 2 === 0 && !isPlaying && (!startedAt || (startedAt && finishedAt))">x</span>
           <span v-else>
             {{item}}
           </span>
@@ -50,6 +50,10 @@ export default defineComponent({
   name: "ArithmeticOperation",
   props: {
     startedAt: {
+      type: Number,
+      default: null,
+    },
+    finishedAt: {
       type: Number,
       default: null,
     },
@@ -128,8 +132,9 @@ export default defineComponent({
   display: flex
   justify-content: center
   align-items: center
+  flex-wrap: wrap
   & * + *
     margin-left: 0.3rem
   .field
-    max-width: 95px
+    width: 80px!important
 </style>

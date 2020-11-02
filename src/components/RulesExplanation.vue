@@ -29,7 +29,7 @@
     </p>
 
     <p>
-      May be the force with you !
+      May the force be with you !
     </p>
 
   </div>
