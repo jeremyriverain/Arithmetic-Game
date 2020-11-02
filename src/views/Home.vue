@@ -11,7 +11,7 @@
     />
     <rules-explanation
       class="px-2"
-      v-if="startedAt === ''"
+      v-if="startedAt === '' && logOperations.length === 0"
     />
     <count-down />
 
@@ -39,6 +39,9 @@
       </div>
     </div>
 
+    <modal-win-game :hasWon="hasWon" />
+    <modal-lose-game :hasLost="hasLost" />
+
   </div>
 </template>
 
@@ -52,6 +55,8 @@ import ChronoGame from "@/components/ChronoGame.vue";
 import CountDown from "@/components/CountDown.vue";
 import FeedbackList from "@/components/FeedbackList.vue";
 import HealthPoints from "@/components/HealthPoints.vue";
+import ModalLoseGame from "@/components/ModalLoseGame.vue";
+import ModalWinGame from "@/components/ModalWinGame.vue";
 import RulesExplanation from "@/components/RulesExplanation.vue";
 import ScoreTracking from "@/components/ScoreTracking.vue";
 import StateGameButtons from "@/components/StateGameButtons.vue";
@@ -64,6 +69,8 @@ export default defineComponent({
     CountDown,
     FeedbackList,
     HealthPoints,
+    ModalLoseGame,
+    ModalWinGame,
     RulesExplanation,
     ScoreTracking,
     StateGameButtons,
@@ -79,6 +86,8 @@ export default defineComponent({
       onOperationError,
       onOperationSuccess,
       logOperations,
+      hasWon,
+      hasLost,
     } = useGameState();
 
     return {
@@ -91,6 +100,8 @@ export default defineComponent({
       onOperationError,
       onOperationSuccess,
       logOperations,
+      hasWon,
+      hasLost,
     };
   },
 });

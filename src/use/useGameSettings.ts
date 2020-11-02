@@ -5,7 +5,7 @@ const settings = reactive({
     numberOfOperands: 3,
     operators: ['+', '-'],
     maxResolutionTime: 10,
-    winningScore: 30,
+    winningScore: 20,
     healthPoints: 3
 })
 

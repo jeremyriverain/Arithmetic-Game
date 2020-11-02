@@ -1,57 +1,61 @@
 <template>
-  <article
-    class="message app-message"
-    v-show="showMessage"
-  >
-    <div class="message-header">
-      <p>Règles du jeu</p>
-      <button
-        class="delete"
-        aria-label="delete"
-        @click="showMessage = false"
-      ></button>
+  <div>
 
-    </div>
-    <div class="message-body">
+    <article
+      class="message app-message"
+      v-show="showMessage"
+    >
+      <div class="message-header">
+        <p>Règles du jeu</p>
+        <button
+          class="delete"
+          aria-label="delete"
+          @click="showMessage = false"
+        ></button>
 
-      <p>
-        Ceci est un jeu de réflexion et de rapidité portant sur le calcul mental.
-      </p>
+      </div>
+      <div class="message-body">
 
-      <p>
-        Vous débutez la partie avec un score à 0, et {{healthPoints}} points de vie.
-      </p>
+        <p>
+          Ceci est un jeu de réflexion et de rapidité portant sur le calcul mental.
+        </p>
 
-      <p>
-        Le but du jeu est de remporter {{winningScore}} points en un minimum de temps.
-      </p>
+        <p>
+          Vous débutez la partie avec un score à 0, et {{healthPoints}} points de vie.
+        </p>
 
-      <p>
-        Vous avez {{maxResolutionTime}} secondes maximum pour résoudre chaque opération.
-      </p>
+        <p>
+          Le but du jeu est de remporter {{winningScore}} points en un minimum de temps.
+        </p>
 
-      <p>
-        En cas de bonne réponse, vous gagnez un nombre de points équivalents au nombre de secondes ne s'étant pas écoulées. Il faut donc être rapide !
-      </p>
+        <p>
+          Vous avez {{maxResolutionTime}} secondes maximum pour résoudre chaque opération.
+        </p>
 
-      <p>
-        En cas de mauvaise réponse ou si le temps s'est écoulé, vous perdez 1 point de vie.
-      </p>
+        <p>
+          En cas de bonne réponse, vous gagnez un nombre de points équivalents au nombre de secondes ne s'étant pas écoulées. Il faut donc être rapide !
+        </p>
 
-      <p>
-        Si vous perdez tous vos points de vie, évidemment c'est Game Over mais vous pourrez retenter votre chance.
-      </p>
+        <p>
+          En cas de mauvaise réponse ou si le temps s'est écoulé, vous perdez 1 point de vie.
+        </p>
 
-      <p>Si le niveau de difficulté ne vous correspond pas, vous avez la possibilité de modifier les paramètres du jeu
-        <router-link to="/settings">ici</router-link>.
-      </p>
+        <p>
+          Si vous perdez tous vos points de vie, évidemment c'est Game Over mais vous pourrez retenter votre chance.
+        </p>
 
-      <p>
-        May be the force with you !
-      </p>
+        <p>Si le niveau de difficulté ne vous correspond pas, vous avez la possibilité de modifier les paramètres du jeu
+          <router-link to="/settings">ici</router-link>.
+        </p>
 
-    </div>
-  </article>
+        <p>
+          May be the force with you !
+        </p>
+
+      </div>
+    </article>
+
+  </div>
 </template>
 
 <script lang="ts">
