@@ -22,7 +22,7 @@ export default function useGameState () {
 
     const { winningScore } = useGameSettings()
     const { score, resetScore, addScore } = useScoreTracking()
-    const { loseHealth, healthPoints } = useHealthTracking()
+    const { loseHealth, healthPoints, resetHealth } = useHealthTracking()
 
     const hasWon = computed(() => {
         const hasWon = healthPoints.value > 0 && score.value >= winningScore
@@ -43,6 +43,7 @@ export default function useGameState () {
             finishedAt.value = null
             resetScore()
             resetCountDown()
+            resetHealth()
             logOperations.value = []
         }
 

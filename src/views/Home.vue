@@ -4,6 +4,7 @@
     <state-game-buttons
       class="mb-5"
       :started-at="startedAt"
+      :finished-at="finishedAt"
       :is-playing="isPlaying"
       @play="play"
       @pause="pause"
