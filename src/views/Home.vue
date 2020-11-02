@@ -7,7 +7,7 @@
       :is-playing="isPlaying"
       @play="play"
       @pause="pause"
-      @restart="play"
+      @stop="stop"
     />
     <rules-explanation
       class="px-2"
@@ -75,7 +75,7 @@ export default defineComponent({
       isPlaying,
       play,
       pause,
-      restart,
+      stop,
       onOperationError,
       onOperationSuccess,
       logOperations,
@@ -87,7 +87,7 @@ export default defineComponent({
       isPlaying,
       play,
       pause,
-      restart,
+      stop,
       onOperationError,
       onOperationSuccess,
       logOperations,

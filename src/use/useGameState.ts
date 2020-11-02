@@ -32,6 +32,7 @@ export default function useGameState () {
             const date = new Date()
             startedAt.value = date.toISOString()
             resetCountDown()
+            logOperations.value = []
         }
 
         startCountDown()
@@ -45,15 +46,15 @@ export default function useGameState () {
         pauseCountDown()
     }
 
-    const restart = () => {
+    const stop = () => {
         isPlaying.value = false
+        pauseCountDown()
+        resetCountDown()
+
         operationTrackIndex.value = operationTrackIndex.value === 1 ? 0 : 1
         startedAt.value = ''
-        logOperations.value = []
 
         resetScore()
-
-        play()
     }
 
     watch(countDown, val => {
@@ -85,7 +86,7 @@ export default function useGameState () {
         hasWon,
         play,
         pause,
-        restart,
+        stop,
         logOperations: computed(() => logOperations.value),
         startedAt: computed(() => startedAt.value),
         onOperationError,

@@ -25,12 +25,12 @@
     <button
       class="button is-small"
       :disabled="startedAt === ''"
-      @click="$emit('restart')"
+      @click="$emit('stop')"
     >
       <span class="icon is-small">
-        <i class="fas fa-redo"></i>
+        <i class="fas fa-stop-circle"></i>
       </span>
-      <span>Rejouer</span>
+      <span>Stop</span>
     </button>
   </div>
 </template>
