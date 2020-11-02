@@ -5,9 +5,7 @@
       <span class="icon has-text-danger">
         <i class="fas fa-exclamation"></i>
       </span>
-      <span class="icon has-text-danger">
-        <i class="fas fa-exclamation"></i>
-      </span>
+
     </p>
   </base-modal>
 </template>

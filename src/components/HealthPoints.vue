@@ -21,7 +21,7 @@ import { defineComponent, computed } from "vue";
 
 import HealthPoint from "@/components/HealthPoint.vue";
 import useHealthTracking from "@/use/useHealthTracking";
-import useGameSettings from "@/use/useGameSettings";
+import { useGameSettings } from "@/use/useGameSettings";
 
 export default defineComponent({
   name: "HealthPoints",
@@ -34,7 +34,9 @@ export default defineComponent({
 
     return {
       healthPoints,
-      numDamaged: computed(() => initialHealthPoints - healthPoints.value),
+      numDamaged: computed(
+        () => initialHealthPoints.value - healthPoints.value
+      ),
     };
   },
 });

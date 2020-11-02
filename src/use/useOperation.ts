@@ -1,19 +1,19 @@
 import { random } from '@/lib/lib'
-import useGameSettings from './useGameSettings'
+import { useGameSettings } from './useGameSettings'
 const { minMaxNumbers, numberOfOperands, operators } = useGameSettings();
 
 export default function useOperation () {
 
     const makeOperation = (): (string | number)[] => {
-        const iterations = numberOfOperands * 2 - 1;
+        const iterations = numberOfOperands.value * 2 - 1;
         let res = [];
         for (let i = 0; i < iterations; i++) {
             if (i % 2 === 0) {
                 // number case
-                res.push(random(minMaxNumbers[0], minMaxNumbers[1]));
+                res.push(random(minMaxNumbers.value[0], minMaxNumbers.value[1]));
             } else {
                 // operator case
-                res.push(operators[random(0, operators.length - 1)]);
+                res.push(operators.value[random(0, operators.value.length - 1)]);
             }
         }
 
@@ -38,7 +38,7 @@ export default function useOperation () {
             return false
         }
 
-        const oddIndexesAreOperators = operationNodes.filter((node, i) => i % 2 !== 0).every(node => operators.includes(node))
+        const oddIndexesAreOperators = operationNodes.filter((node, i) => i % 2 !== 0).every(node => operators.value.includes(node))
         if (!oddIndexesAreOperators) {
             console.error('operation not valid because odd indexes should contain only operators')
             return false

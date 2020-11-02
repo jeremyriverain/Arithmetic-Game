@@ -1,56 +1,21 @@
 <template>
   <div class="page-settings">
     <form @submit.prevent>
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Nombre d'opérandes</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input
-                class="input"
-                type="number"
-              >
-            </p>
-          </div>
 
-        </div>
-      </div>
+      <base-input-number
+        v-model="localSettings.numberOfOperands"
+        label="Nombre d'opérandes"
+      />
 
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Nombre minimum</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input
-                class="input"
-                type="number"
-              >
-            </p>
-          </div>
-        </div>
+      <base-input-number
+        v-model="localSettings.minMaxNumbers[0]"
+        label="Nombre minimum"
+      />
 
-      </div>
-
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Nombre maximum</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input
-                class="input"
-                type="number"
-              >
-            </p>
-          </div>
-        </div>
-
-      </div>
+      <base-input-number
+        v-model="localSettings.minMaxNumbers[1]"
+        label="Nombre maximum"
+      />
 
       <div class="field is-horizontal">
         <div class="field-label">
@@ -84,54 +49,20 @@
           </div>
         </div>
       </div>
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Score à atteindre</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input
-                class="input"
-                type="number"
-              >
-            </p>
-          </div>
-        </div>
 
-      </div>
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Délai de résolution (secondes)</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input
-                class="input"
-                type="number"
-              >
-            </p>
-          </div>
-        </div>
+      <base-input-number
+        v-model="localSettings.winningScore"
+        label="Score à atteindre"
+      />
 
-      </div>
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">Points de vie</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <p class="control">
-              <input
-                class="input"
-                type="number"
-              >
-            </p>
-          </div>
-        </div>
-
-      </div>
+      <base-input-number
+        v-model="localSettings.maxResolutionTime"
+        label="Délai de résolution (secondes)"
+      />
+      <base-input-number
+        v-model="localSettings.healthPoints"
+        label="Points de vie"
+      />
 
       <div class="field is-horizontal">
         <div class="field-label">
@@ -140,7 +71,11 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <button class="button is-success">
+              <button
+                class="button is-success"
+                type="submit"
+                @click="onSubmit"
+              >
                 Enregistrer
               </button>
             </div>
@@ -153,26 +88,49 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import useGameSettings from "@/use/useGameSettings";
+import { defineComponent, watch, reactive } from "vue";
+import { useGameSettings, setSettings } from "@/use/useGameSettings";
+
+import BaseInputNumber from "@/components/BaseInputNumber.vue";
+import Settings from "@/model/settings";
 
 export default defineComponent({
   name: "PageSettings",
+  components: {
+    BaseInputNumber,
+  },
   setup() {
     const {
       minMaxNumbers,
       maxResolutionTime,
-      operators,
-      numberOfOperands,
       winningScore,
+      healthPoints,
+      numberOfOperands,
+      operators,
     } = useGameSettings();
 
+    let localSettings = reactive(
+      new Settings(
+        minMaxNumbers.value,
+        numberOfOperands.value,
+        operators.value,
+        maxResolutionTime.value,
+        winningScore.value,
+        healthPoints.value
+      )
+    );
+    watch(localSettings, (newSettings) => {
+      console.log("local settings", newSettings);
+    });
+
+    const onSubmit = () => {
+      console.log("on submit");
+      setSettings(localSettings);
+    };
+
     return {
-      minMaxNumbers,
-      maxResolutionTime,
-      operators,
-      numberOfOperands,
-      winningScore,
+      onSubmit,
+      localSettings,
     };
   },
 });

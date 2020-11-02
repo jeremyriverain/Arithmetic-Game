@@ -1,8 +1,8 @@
 import { ref, computed } from 'vue'
-import useGameSettings from '@/use/useGameSettings'
+import { useGameSettings } from '@/use/useGameSettings'
 
 const { healthPoints: initialHealthPoints } = useGameSettings()
-const healthPoints = ref(initialHealthPoints)
+const healthPoints = ref(initialHealthPoints.value)
 
 export default function useScoreTracking () {
 
@@ -17,7 +17,7 @@ export default function useScoreTracking () {
     }
 
     const resetHealth = () => {
-        healthPoints.value = initialHealthPoints
+        healthPoints.value = initialHealthPoints.value
         console.log('reset health', healthPoints.value);
     }
 

@@ -2,6 +2,7 @@
   <section id="app-container">
 
     <div id="nav">
+      <router-link to="/rules">Règles</router-link> |
       <router-link to="/">Jeu</router-link> |
       <router-link to="/settings">Paramètres</router-link>
     </div>

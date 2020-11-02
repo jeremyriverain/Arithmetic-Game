@@ -1,5 +1,5 @@
 import { ref, computed, watch, Ref } from 'vue';
-import useGameSettings from '@/use/useGameSettings'
+import { useGameSettings } from '@/use/useGameSettings'
 import useScoreTracking from '@/use/useScoreTracking'
 import useCountDown from '@/use/useCountDown'
 import useHealthTracking from '@/use/useHealthTracking'
@@ -25,7 +25,7 @@ export default function useGameState () {
     const { loseHealth, healthPoints, resetHealth } = useHealthTracking()
 
     const hasWon = computed(() => {
-        const hasWon = healthPoints.value > 0 && score.value >= winningScore
+        const hasWon = healthPoints.value > 0 && score.value >= winningScore.value
         console.log('has won', score, winningScore, hasWon);
         return hasWon
     })
@@ -43,6 +43,7 @@ export default function useGameState () {
             finishedAt.value = null
             resetScore()
             resetCountDown()
+            nextOperation()
             resetHealth()
             logOperations.value = []
         }

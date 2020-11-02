@@ -1,17 +1,17 @@
 import { watch, ref, computed } from 'vue'
 import useGameState from './useGameState'
-import useGameSettings from './useGameSettings'
+import { useGameSettings } from './useGameSettings'
 
 const { maxResolutionTime } = useGameSettings();
 
-const countDown = ref(maxResolutionTime);
+const countDown = ref(maxResolutionTime.value);
 const interval = ref(0);
 
 
 export default function useCountDown () {
 
     const reset = () => {
-        countDown.value = maxResolutionTime
+        countDown.value = maxResolutionTime.value
     }
 
     const start = () => {

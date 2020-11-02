@@ -33,7 +33,7 @@
 import { defineComponent, computed } from "vue";
 
 import useCountDown from "@/use/useCountDown";
-import useGameSettings from "@/use/useGameSettings";
+import { useGameSettings } from "@/use/useGameSettings";
 
 export default defineComponent({
   name: "Timer",
@@ -42,15 +42,17 @@ export default defineComponent({
     const { maxResolutionTime } = useGameSettings();
 
     const warning_threshold = computed(() =>
-      Math.ceil((maxResolutionTime * 40) / 100)
+      Math.ceil((maxResolutionTime.value * 40) / 100)
     );
     const alert_threshold = computed(() =>
-      Math.ceil((maxResolutionTime * 20) / 100)
+      Math.ceil((maxResolutionTime.value * 20) / 100)
     );
 
-    const timePassed = computed(() => maxResolutionTime - countDown.value);
+    const timePassed = computed(
+      () => maxResolutionTime.value - countDown.value
+    );
 
-    const timeLeft = computed(() => maxResolutionTime - timePassed.value);
+    const timeLeft = computed(() => maxResolutionTime.value - timePassed.value);
 
     const animated = computed(() => timePassed.value >= 1);
 
@@ -65,8 +67,10 @@ export default defineComponent({
     });
 
     const timeFraction = computed(() => {
-      const rawTimeFraction = timeLeft.value / maxResolutionTime;
-      return rawTimeFraction - (1 / maxResolutionTime) * (1 - rawTimeFraction);
+      const rawTimeFraction = timeLeft.value / maxResolutionTime.value;
+      return (
+        rawTimeFraction - (1 / maxResolutionTime.value) * (1 - rawTimeFraction)
+      );
     });
 
     const circleDasharray = computed(() => {

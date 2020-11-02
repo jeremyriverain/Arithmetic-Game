@@ -10,10 +10,6 @@
       @pause="pause"
       @stop="stop"
     />
-    <rules-explanation
-      class="px-2 mb-3"
-      v-if="!startedAt && logOperations.length === 0"
-    />
     <timer class="timer" />
 
     <arithmetic-operation
@@ -59,7 +55,6 @@ import FeedbackList from "@/components/FeedbackList.vue";
 import HealthPoints from "@/components/HealthPoints.vue";
 import ModalLoseGame from "@/components/ModalLoseGame.vue";
 import ModalWinGame from "@/components/ModalWinGame.vue";
-import RulesExplanation from "@/components/RulesExplanation.vue";
 import ScoreTracking from "@/components/ScoreTracking.vue";
 import StateGameButtons from "@/components/StateGameButtons.vue";
 import Timer from "@/components/Timer.vue";
@@ -72,7 +67,6 @@ export default defineComponent({
     HealthPoints,
     ModalLoseGame,
     ModalWinGame,
-    RulesExplanation,
     ScoreTracking,
     StateGameButtons,
     Timer,
@@ -107,6 +101,19 @@ export default defineComponent({
       hasWon,
       hasLost,
     };
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log("before leave", to, from);
+    if (this.startedAt && !this.finishedAt) {
+      const confirmLeave = confirm(
+        "Vous avez une partie en cours. Poursuivre la navigation ?"
+      );
+      if (confirmLeave) {
+        next();
+      }
+      return;
+    }
+    next();
   },
 });
 </script>
