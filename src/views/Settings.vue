@@ -152,7 +152,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import useGameSettings from "@/use/useGameSettings";
 

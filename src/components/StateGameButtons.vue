@@ -2,7 +2,7 @@
   <div class="app-container">
     <button
       class="button is-small"
-      @click="play()"
+      @click="$emit('play')"
       :disabled="isPlaying"
     >
 
@@ -14,7 +14,7 @@
 
     <button
       class="button is-small"
-      @click="pause()"
+      @click="$emit('pause')"
       :disabled="!isPlaying"
     >
       <span class="icon is-small">
@@ -25,7 +25,7 @@
     <button
       class="button is-small"
       :disabled="startedAt === ''"
-      @click="restart()"
+      @click="$emit('restart')"
     >
       <span class="icon is-small">
         <i class="fas fa-redo"></i>
@@ -35,24 +35,22 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
-
-import useGameState from "@/use/useGameState";
 
 export default defineComponent({
   name: "StateGameButtons",
-  setup() {
-    const { isPlaying, play, pause, startedAt, restart } = useGameState();
-
-    return {
-      play,
-      pause,
-      isPlaying,
-      startedAt,
-      restart,
-    };
+  props: {
+    startedAt: {
+      type: String,
+      required: true,
+    },
+    isPlaying: {
+      type: Boolean,
+      required: true,
+    },
   },
+  setup() {},
 });
 </script>
 

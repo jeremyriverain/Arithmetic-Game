@@ -12,7 +12,7 @@
 
 </template>
 
-<script>
+<script lang="ts">
 import useScoreTracking from "@/use/useScoreTracking";
 import useGameSettings from "@/use/useGameSettings";
 export default {

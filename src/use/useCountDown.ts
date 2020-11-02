@@ -3,7 +3,6 @@ import useGameState from './useGameState'
 import useGameSettings from './useGameSettings'
 
 const { maxResolutionTime } = useGameSettings();
-const { isPlaying, nextRound, currentRound } = useGameState();
 
 const countDown = ref(maxResolutionTime);
 const interval = ref(0);
@@ -11,46 +10,35 @@ const interval = ref(0);
 
 export default function useCountDown () {
 
-    const startInterval = () => {
-        if (interval.value) { // cleanup previous interval
-            clearInterval(interval.value)
-        }
-        if (isPlaying.value) {
-            interval.value = setInterval(() => {
-                if (countDown.value <= 0) {
-                    nextRound()
-                    resetCountDown()
-                    return
-                }
-                countDown.value--;
-            }, 1000);
-        } else {
-            clearInterval(interval.value);
-        }
-    }
-
-    watch(
-        [isPlaying],
-        () => {
-            startInterval()
-        },
-        {
-            immediate: true,
-        }
-    );
-
-
-    watch(currentRound, () => {
-        resetCountDown()
-        startInterval()
-    })
-
-    const resetCountDown = () => {
+    const reset = () => {
         countDown.value = maxResolutionTime
     }
 
+    const start = () => {
+        if (interval.value) { // cleanup previous interval
+            clearInterval(interval.value)
+        }
+
+        interval.value = setInterval(() => {
+            if (countDown.value <= 0) {
+                console.log('0', countDown.value);
+                return
+            }
+            countDown.value--;
+        }, 1000);
+    }
+
+    const pause = () => {
+        if (!interval.value) {
+            return
+        }
+        clearInterval(interval.value)
+    }
+
     return {
-        resetCountDown,
+        reset,
+        start,
+        pause,
         countDown: computed(() => countDown.value),
     };
 }

@@ -1,21 +1,28 @@
 <template>
-  <div class="is-flex is-align-items-center is-justify-content-center is-size-6">
-    <span class="icon has-text-danger">
-      <i class="fas fa-heart"></i>
-    </span>
-    <span class="icon has-text-danger">
-      <i class="fas fa-heart"></i>
-    </span>
-    <span class="icon has-text-danger">
-      <i class="far fa-heart"></i>
-    </span>
-  </div>
-
+  <span class="icon has-text-danger">
+    <i :class="icon"></i>
+  </span>
 </template>
 
-<script>
-import { defineComponent } from "vue";
-export default defineComponent({});
+<script lang="ts">
+import { defineComponent, computed } from "vue";
+export default defineComponent({
+  props: {
+    isDamaged: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
+    const icon = computed(() =>
+      props.isDamaged ? "far fa-heart" : "fas fa-heart"
+    );
+
+    return {
+      icon,
+    };
+  },
+});
 </script>
 
 <style>

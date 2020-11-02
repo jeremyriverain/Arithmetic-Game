@@ -16,16 +16,15 @@
 
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
-export default defineComponent({
-  setup() {},
-});
+export default defineComponent({});
 </script>
 
 <style lang="sass">
 @charset "utf-8"
 $green: #42b983
+$green: $green
 @import "~bulma/bulma.sass"
 #app
   font-family: Avenir, Helvetica, Arial, sans-serif

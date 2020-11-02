@@ -20,7 +20,7 @@ export default function useOperation () {
         return res; // return array. odd indexes are numbers, even indexes are operators between numbers
     };
 
-    const isValidOperation = (operationNodes: []): boolean => {
+    const isValidOperation = (operationNodes: (any)[]): boolean => {
         const lengthOperation = operationNodes.length
         if (!lengthOperation) {
             console.error('operation is empty')
@@ -47,7 +47,7 @@ export default function useOperation () {
         return true
     }
 
-    const getResult = (operationNodes: []): number => {
+    const getResult = (operationNodes: (string | number)[]): number => {
         if (!isValidOperation(operationNodes)) {
             throw "Operation is not valid";
         }
@@ -57,7 +57,6 @@ export default function useOperation () {
 
     return {
         getResult,
-        isValidOperation,
-        makeOperation
+        makeOperation,
     }
 }

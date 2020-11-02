@@ -1,26 +1,40 @@
 <template>
   <div class="page-home">
 
-    <state-game-buttons class="mb-5" />
+    <state-game-buttons
+      class="mb-5"
+      :started-at="startedAt"
+      :is-playing="isPlaying"
+      @play="play"
+      @pause="pause"
+      @restart="play"
+    />
     <rules-explanation
       class="px-2"
       v-if="startedAt === ''"
     />
     <count-down />
 
-    <arithmetic-operation class="my-5" />
+    <arithmetic-operation
+      class="my-5"
+      :started-at="startedAt"
+      :operation-track-index="operationTrackIndex"
+      :is-playing="isPlaying"
+      @operation-success="onOperationSuccess"
+      @operation-error="onOperationError"
+    />
 
     <div class="card">
       <div class="card-content">
         <div class="is-flex is-flex-direction-column is-justify-content-space-around	is-align-items-center mt-5 is-flex-wrap-wrap">
-          <health-point />
+          <health-points />
           <score-tracking class="my-1" />
           <chrono-game />
         </div>
 
         <hr>
 
-        <feedback-list />
+        <feedback-list :log-operations="logOperations" />
 
       </div>
     </div>
@@ -28,19 +42,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 
 import useGameState from "@/use/useGameState";
 
-import ArithmeticOperation from "@/components/ArithmeticOperation";
-import ChronoGame from "@/components/ChronoGame";
-import CountDown from "@/components/CountDown";
-import FeedbackList from "@/components/FeedbackList";
-import HealthPoint from "@/components/HealthPoint";
-import RulesExplanation from "@/components/RulesExplanation";
-import ScoreTracking from "@/components/ScoreTracking";
-import StateGameButtons from "@/components/StateGameButtons";
+import ArithmeticOperation from "@/components/ArithmeticOperation.vue";
+import ChronoGame from "@/components/ChronoGame.vue";
+import CountDown from "@/components/CountDown.vue";
+import FeedbackList from "@/components/FeedbackList.vue";
+import HealthPoints from "@/components/HealthPoints.vue";
+import RulesExplanation from "@/components/RulesExplanation.vue";
+import ScoreTracking from "@/components/ScoreTracking.vue";
+import StateGameButtons from "@/components/StateGameButtons.vue";
 
 export default defineComponent({
   name: "PageHome",
@@ -49,15 +63,35 @@ export default defineComponent({
     ChronoGame,
     CountDown,
     FeedbackList,
-    HealthPoint,
+    HealthPoints,
     RulesExplanation,
     ScoreTracking,
     StateGameButtons,
   },
   setup() {
-    const { startedAt } = useGameState();
+    const {
+      startedAt,
+      operationTrackIndex,
+      isPlaying,
+      play,
+      pause,
+      restart,
+      onOperationError,
+      onOperationSuccess,
+      logOperations,
+    } = useGameState();
 
-    return { startedAt };
+    return {
+      startedAt,
+      operationTrackIndex,
+      isPlaying,
+      play,
+      pause,
+      restart,
+      onOperationError,
+      onOperationSuccess,
+      logOperations,
+    };
   },
 });
 </script>

@@ -26,9 +26,10 @@
         </div>
         <div>
 
-          <span class="icon is-small">
-            <i class="fas fa-question"></i>
-          </span>
+          <arithmetic-operation-submit-btn
+            @submit="onSubmit"
+            :is-playing="isPlaying"
+          />
 
         </div>
       </div>
@@ -38,48 +39,86 @@
 </template>
 
 
-<script>
+<script lang="ts">
 import useOperation from "@/use/useOperation.ts";
-import useGameState from "@/use/useGameState.ts";
-import useCountDown from "@/use/useCountDown";
-import useScoreTracking from "@/use/useScoreTracking";
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, ref, watch, Ref } from "vue"; // eslint-disable-line no-unused-vars
+
+import ArithmeticOperationSubmitBtn from "@/components/ArithmeticOperationSubmitBtn.vue";
+import LogOperation from "@/model/logOperation";
+
 export default defineComponent({
   name: "ArithmeticOperation",
-  setup() {
-    const result = ref(null);
+  props: {
+    startedAt: {
+      type: String,
+      required: true,
+    },
+    operationTrackIndex: {
+      type: Number,
+      required: true,
+    },
+    isPlaying: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  components: {
+    ArithmeticOperationSubmitBtn,
+  },
+  setup(props, { emit }) {
+    const result: Ref<number | null> = ref(null);
     const { makeOperation, getResult } = useOperation();
 
-    const operationNodes = ref(makeOperation());
+    const operationNodes: Ref<(string | number)[]> = ref(makeOperation());
 
-    const { currentRound, isPlaying, nextRound, startedAt } = useGameState();
-
-    const { countDown } = useCountDown();
-    const { addScore } = useScoreTracking();
-
-    watch([currentRound], () => {
-      operationNodes.value = makeOperation();
-      result.value = null;
-    });
+    watch(
+      () => props.operationTrackIndex,
+      () => {
+        operationNodes.value = makeOperation();
+        result.value = null;
+      }
+    );
 
     const onSubmit = () => {
       const expected = getResult(operationNodes.value);
+
+      const copyOperationNodes: (string | number)[] = Object.assign(
+        [],
+        operationNodes.value
+      );
+
+      let logOperation = new LogOperation(
+        copyOperationNodes,
+        result.value,
+        expected
+      );
+
       if (result.value === expected) {
-        console.log("success");
-        addScore(countDown.value);
+        emit("operation-success", logOperation);
       } else {
-        console.warn(`error, ${expected} expected`);
+        emit("operation-error", logOperation);
       }
-      nextRound();
     };
 
     return {
       onSubmit,
       operationNodes,
       result,
-      isPlaying,
-      startedAt,
     };
+  },
+  emits: {
+    "operation-success": (logOperation: LogOperation) => {
+      if (logOperation instanceof LogOperation) {
+        return true;
+      }
+      return false;
+    },
+    "operation-error": (logOperation: LogOperation) => {
+      if (logOperation instanceof LogOperation) {
+        return true;
+      }
+      return false;
+    },
   },
 });
 </script>
@@ -92,5 +131,5 @@ export default defineComponent({
   & * + *
     margin-left: 0.3rem
   .field
-    max-width: 70px
+    max-width: 95px
 </style>
