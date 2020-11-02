@@ -9,7 +9,8 @@ const isPlaying = ref(false)
 
 const operationTrackIndex = ref(1)
 
-const startedAt = ref('')
+const startedAt: Ref<number | null> = ref(null)
+const finishedAt: Ref<number | null> = ref(null)
 
 const logOperations: Ref<LogOperation[]> = ref([])
 
@@ -37,9 +38,9 @@ export default function useGameState () {
 
 
     const play = () => {
-        if (startedAt.value === '') { //it's a new game
-            const date = new Date()
-            startedAt.value = date.toISOString()
+        if (hasWon.value || hasLost.value || startedAt.value === null) { //it's a new game
+            startedAt.value = Date.now()
+            finishedAt.value = null
             resetScore()
             resetCountDown()
             logOperations.value = []
@@ -61,8 +62,9 @@ export default function useGameState () {
         pauseCountDown()
         resetCountDown()
 
+        finishedAt.value = Date.now()
+
         operationTrackIndex.value = operationTrackIndex.value === 1 ? 0 : 1
-        startedAt.value = ''
 
     }
 
@@ -105,6 +107,8 @@ export default function useGameState () {
         nextOperation()
     };
 
+
+
     return {
         isPlaying: computed(() => isPlaying.value),
         operationTrackIndex: computed(() => operationTrackIndex.value),
@@ -114,9 +118,10 @@ export default function useGameState () {
         pause,
         stop,
         logOperations: computed(() => logOperations.value),
+        finishedAt,
         startedAt: computed(() => startedAt.value),
         onOperationError,
-        onOperationSuccess
+        onOperationSuccess,
     }
 
 

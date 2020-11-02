@@ -24,7 +24,7 @@
     </button>
     <button
       class="button is-small"
-      :disabled="startedAt === ''"
+      :disabled="!startedAt"
       @click="$emit('stop')"
     >
       <span class="icon is-small">
@@ -42,8 +42,8 @@ export default defineComponent({
   name: "StateGameButtons",
   props: {
     startedAt: {
-      type: String,
-      required: true,
+      type: Number,
+      default: null,
     },
     isPlaying: {
       type: Boolean,
