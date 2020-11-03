@@ -38,7 +38,7 @@ export default function useGameState () {
 
 
     const play = () => {
-        if (hasWon.value || hasLost.value || startedAt.value === null) { //it's a new game
+        if (hasWon.value || hasLost.value || startedAt.value === null || (startedAt.value && finishedAt.value)) { //it's a new game
             startedAt.value = Date.now()
             finishedAt.value = null
             resetScore()
