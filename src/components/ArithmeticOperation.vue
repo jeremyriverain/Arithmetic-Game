@@ -13,23 +13,27 @@
           </span>
         </div>
         <div>=</div>
-        <div class="field mb-0">
-          <div class="control">
-            <input
-              class="input"
-              type="number"
-              v-model.number="result"
-              @keyup.enter="onSubmit"
-              :disabled="!isPlaying"
-            >
-          </div>
-        </div>
-        <div>
+        <div class="is-flex is-justify-content-center is-align-items-center">
 
-          <arithmetic-operation-submit-btn
-            @submit="onSubmit"
-            :is-playing="isPlaying"
-          />
+          <div class="field mb-0">
+            <div class="control">
+              <input
+                class="input"
+                type="number"
+                v-model.number="result"
+                @keyup.enter="onSubmit"
+                :disabled="!isPlaying"
+              >
+            </div>
+          </div>
+          <div>
+
+            <arithmetic-operation-submit-btn
+              @submit="onSubmit"
+              :is-playing="isPlaying"
+            />
+
+          </div>
 
         </div>
       </div>
