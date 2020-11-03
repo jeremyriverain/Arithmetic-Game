@@ -161,14 +161,17 @@ export default defineComponent({
         winningScore: {
           required,
           minValue: minValue(10),
+          maxValue: maxValue(500),
         },
         maxResolutionTime: {
           required,
           minValue: minValue(5),
+          maxValue: maxValue(180),
         },
         healthPoints: {
           required,
           minValue: minValue(1),
+          maxValue: maxValue(10),
         },
       },
     };
