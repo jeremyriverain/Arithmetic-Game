@@ -28,3 +28,9 @@ yarn serve
 ```
 yarn build
 ```
+
+### Deploy
+
+```
+yarn deploy
+```
