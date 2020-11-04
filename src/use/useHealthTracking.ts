@@ -4,7 +4,7 @@ import { useGameSettings } from '@/use/useGameSettings'
 const { healthPoints: initialHealthPoints } = useGameSettings()
 const healthPoints = ref(initialHealthPoints.value)
 
-export default function useScoreTracking () {
+export default function useHealthTracking () {
 
 
     const loseHealth = (points: number = 1) => {
